@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Unit;
+namespace Monderka\JwtGenerator\Test\Unit;
 
 use Jose\Component\Checker\AlgorithmChecker;
 use Jose\Component\Checker\ClaimCheckerManager;
@@ -56,23 +56,26 @@ final class WebTokenGeneratorTest extends TestCase
             '',
             [ "use" => "sig" ]
         );
-        $algoManager = new AlgorithmManager([ new RS256() ]);;
+        $algoManager = new AlgorithmManager([ new RS256() ]);
         $serializerManager = new JWSSerializerManager([
             new CompactSerializer()
         ]);
         $jwsVerifier = new JWSVerifier($algoManager);
-        $headerCheckerManager = new HeaderCheckerManager([
-            new AlgorithmChecker(["RS256"])
-        ],[
-            new JWSTokenSupport()
-        ]);
+        $headerCheckerManager = new HeaderCheckerManager(
+            [
+                new AlgorithmChecker(["RS256"])
+            ],
+            [
+                new JWSTokenSupport()
+            ]
+        );
 
         $jws = $serializerManager->unserialize($token);
         $headerCheckerManager->check($jws, 0);
         $this->assertTrue(
             $jwsVerifier->verifyWithKey($jws, $publicKey, 0)
         );
-        $payload = json_decode($jws->getPayload(),true);
+        $payload = json_decode($jws->getPayload(), true);
         $claimChecker = new ClaimCheckerManager([
             new IssuedAtChecker(),
             new NotBeforeChecker(),

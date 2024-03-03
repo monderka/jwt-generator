@@ -5,7 +5,8 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Monderka\\JwtGenerator\\": "src/"
+            "Monderka\\JwtGenerator\\": "src/",
+            "Monderka\\JwtGenerator\\Test\\": "tests/"
         }
     },
     "authors": [
