@@ -37,7 +37,6 @@ final class WebTokenGenerator
      *     "jwtAlgo": string,
      *     "privateKeyPassPhrase": string,
      *     "privateKeyPath": string,
-     *     "publicKeyPath": string,
      *     "accessTokenExpiration": int
      * } $config
      */
