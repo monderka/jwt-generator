@@ -1,5 +1,6 @@
 {
     "name": "monderka/jwt-generator",
+    "license": "MIT",
     "description": "PHP tool for simple generating JWTokens",
     "type": "library",
     "autoload": {
